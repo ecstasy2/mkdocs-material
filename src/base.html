@@ -180,12 +180,39 @@
         <div class="wrapper">
 
           <!-- Headline -->
-          {% if not h1 %}
+          {% if h1 %}
             <h1>{{ page_title | default(site_name, true)}}</h1>
           {% endif %}
 
+          <!-- Subnav -->
+          <!-- Expand active pages -->
+          {% for nav_item in nav %}
+            {% if nav_item == current_page %}
+
+              {% if h1 %}
+                {% set toc = (toc | first).children %}
+              {% endif %}
+                <!-- Render anchors of active page -->
+              {% if toc and (toc | first) %}
+                <ul id="toc">
+                  {% for toc_item in toc %}
+
+                    <!-- Render anchor -->
+                    <li class="anchor">
+                      <a title="{{ toc_item.title }}" href="{{ toc_item.url }}">
+                        {{ toc_item.title }}
+                      </a>
+                    </li>
+                  {% endfor %}
+                </ul>
+              {% endif %}
+            {% endif %}
+          {% endfor %}
+
+          <!-- End sub nav -->
+
           <!-- Article content -->
-          {{ content }}
+          <div id="doc-content">{{ content }}</div>
 
           <!-- Copyright and theme information -->
           <aside class="copyright" role="note">

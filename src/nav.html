@@ -19,33 +19,5 @@
       {{ nav_item.title }}
     </a>
 
-    <!-- Expand active pages -->
-    {% if nav_item == current_page %}
-
-      <!--
-        The top-level anchor must be skipped if the article contains a h1
-        headline, since it would be redundant to the link to the current page
-        that is located just above the anchor. Therefore we directly continue
-        with the children of the anchor.
-      -->
-      {% if h1 %}
-        {% set toc = (toc | first).children %}
-      {% endif %}
-
-      <!-- Render anchors of active page -->
-      {% if toc and (toc | first) %}
-        <ul>
-          {% for toc_item in toc %}
-
-            <!-- Render anchor -->
-            <li class="anchor">
-              <a title="{{ toc_item.title }}" href="{{ toc_item.url }}">
-                {{ toc_item.title }}
-              </a>
-            </li>
-          {% endfor %}
-        </ul>
-      {% endif %}
-    {% endif %}
   </li>
 {% endif %}

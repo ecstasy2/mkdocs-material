@@ -31,6 +31,10 @@
   font-size: 14px;
   line-height: 1.7em;
 
+  & #doc-content > h1 {
+    display: none;
+  }
+
   /* [tablet landscape+]: Indent to account for drawer */
   @include break-from-device(tablet landscape) {
     margin-left: 262px;
@@ -80,6 +84,11 @@
       padding-top: 60px;
       margin-bottom: 2px;
     }
+  }
+
+  ul#toc {
+    padding: 0px 0 25px;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.12);
   }
 
   /*
